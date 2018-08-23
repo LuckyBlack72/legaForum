@@ -1,0 +1,529 @@
+<div>
+  <div class="py-5">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-1 {{parametriPagina.bgTitolo}} text-center">
+          <img alt="" src="assets/img/logoLF.gif" width="162" hight="160"  >
+        </div>
+        <div class="col-md-8 {{parametriPagina.bgTitolo}} text-center text-capitalize">
+          <h1 class="display-4 my-5" > Sorteggio Serie {{parametriPagina.serie}} {{stagione}} </h1>
+        </div>
+        <div class="col-md-1 {{parametriPagina.bgTitolo}} text-center">
+          <img alt="" src="assets/img/logoLF.gif" width="162" hight="160"  >
+        </div>
+        <div class="col-md-1"></div>
+      </div>
+    </div>
+  </div>
+  <div class="py-2">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-3">
+          <h1 class="text-success text-center"> Fascia 1 </h1>
+        </div>
+        <div class="col-3">
+          <h1 class="text-primary text-center"> Fascia 2 </h1>
+        </div>
+        <div class="col-3">
+          <h1 class="text-warning text-center"> Fascia 3 </h1>
+        </div>
+        <div class="col-3">
+          <h1 class="text-danger text-center"> Fascia 4 </h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-3">
+          <div class="table-responsive-lg">
+            <table class="table table-borderless ">
+              <thead>
+                <tr>
+                  <th class="text-center">Squadra</th>
+                  <th class="text-center">Allenatore</th>
+                  <th class="text-center">Ranking Generale</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor=" let fascia1 of squadreFascia1" class="text-center">
+                  <td><span class="badge badge-pill badge-success text-center w-100">{{fascia1.squadra}}</span></td>
+                  <td><span class="badge badge-pill badge-success text-center w-100">{{fascia1.allenatore}}</span></td>
+                  <td><span class="badge badge-pill badge-success text-center w-100">{{fascia1.ranking}}</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="table-responsive-lg">
+            <table class="table table-borderless ">
+              <thead>
+                <tr>
+                  <th class="text-center">Squadra</th>
+                  <th class="text-center">Allenatore</th>
+                  <th class="text-center">Ranking Generale</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor=" let fascia2 of squadreFascia2" class="text-center">
+                  <td><span class="badge badge-pill badge-primary text-center w-100">{{fascia2.squadra}}</span></td>
+                  <td><span class="badge badge-pill badge-primary text-center w-100">{{fascia2.allenatore}}</span></td>
+                  <td><span class="badge badge-pill badge-primary text-center w-100">{{fascia2.ranking}}</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="table-responsive-lg">
+            <table class="table table-borderless">
+              <thead>
+                <tr>
+                  <th class="text-center">Squadra</th>
+                  <th class="text-center">Allenatore</th>
+                  <th class="text-center">Ranking Generale</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor=" let fascia3 of squadreFascia3" class="text-center">
+                  <td><span class="badge badge-pill badge-warning text-center w-100">{{fascia3.squadra}}</span></td>
+                  <td><span class="badge badge-pill badge-warning text-center w-100">{{fascia3.allenatore}}</span></td>
+                  <td><span class="badge badge-pill badge-warning text-center w-100">{{fascia3.ranking}}</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="table-responsive-lg">
+            <table class="table table-borderless">
+              <thead>
+                <tr>
+                  <th class="text-center">Squadra</th>
+                  <th class="text-center">Allenatore</th>
+                  <th class="text-center">Ranking Generale</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor=" let fascia4 of squadreFascia4" class="text-center">
+                  <td><span class="badge badge-pill badge-danger text-center w-100">{{fascia4.squadra}}</span></td>
+                  <td><span class="badge badge-pill badge-danger text-center w-100">{{fascia4.allenatore}}</span></td>
+                  <td><span class="badge badge-pill badge-danger text-center w-100">{{fascia4.ranking}}</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="py-2">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-3">
+          <h1 class="text-success text-center"> Girone {{parametriPagina.g1}} </h1>
+        </div>
+        <div class="col-md-3">
+          <h1 class="text-primary text-center"> Girone {{parametriPagina.g2}} </h1>
+        </div>
+        <div class="col-md-3">
+          <h1 class="text-warning text-center"> Girone {{parametriPagina.g3}} </h1>
+        </div>
+        <div class="col-md-3">
+          <h1 class="text-danger text-center"> Girone {{parametriPagina.g4}} </h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>ODS</th>
+                  <th>Squadra</th>
+                  <th>Allenatore</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- uso di class -->
+                <tr *ngFor=" let girone1 of squadreGirone1" class="text-center">
+                  <td><span class="badge badge-pill {{girone1.fasciaSquadra}} text-center w-100">{{girone1.ods}}</span></td>
+                  <td><span class="badge badge-pill {{girone1.fasciaSquadra}} text-center w-100">{{girone1.squadra}}</span></td>
+                  <td><span class="badge badge-pill {{girone1.fasciaSquadra}} text-center w-100">{{girone1.allenatore}}</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>ODS</th>
+                  <th>Squadra</th>
+                  <th>Allenatore</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor=" let girone2 of squadreGirone2" class="text-center">
+                  <td><span class="badge badge-pill {{girone2.fasciaSquadra}} text-center w-100">{{girone2.ods}}</span></td>
+                  <td><span class="badge badge-pill {{girone2.fasciaSquadra}} text-center w-100">{{girone2.squadra}}</span></td>
+                  <td><span class="badge badge-pill {{girone2.fasciaSquadra}} text-center w-100">{{girone2.allenatore}}</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>ODS</th>
+                  <th>Squadra</th>
+                  <th>Allenatore</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor=" let girone3 of squadreGirone3" class="text-center">
+                  <td><span class="badge badge-pill {{girone3.fasciaSquadra}} text-center w-100">{{girone3.ods}}</span></td>
+                  <td><span class="badge badge-pill {{girone3.fasciaSquadra}} text-center w-100">{{girone3.squadra}}</span></td>
+                  <td><span class="badge badge-pill {{girone3.fasciaSquadra}} text-center w-100">{{girone3.allenatore}}</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>ODS</th>
+                  <th>Squadra</th>
+                  <th>Allenatore</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor=" let girone4 of squadreGirone4" class="text-center">
+                  <td><span class="badge badge-pill {{girone4.fasciaSquadra}} text-center w-100">{{girone4.ods}}</span></td>
+                  <td><span class="badge badge-pill {{girone4.fasciaSquadra}} text-center w-100">{{girone4.squadra}}</span></td>
+                  <td><span class="badge badge-pill {{girone4.fasciaSquadra}} text-center w-100">{{girone4.allenatore}}</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="py-2">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-5">
+          <a class="btn btn-info m-2 btn-lg" href='/scegli-serie' role="Button"> Sorteggio Nuova Serie </a>
+          <button [disabled]="flgSaved" type="button" class="btn btn-info btn-lg" (click)="initSorteggioGirone(template)">
+            Sorteggio Gironi Serie {{parametriPagina.serie}}
+          </button>
+          <button [disabled]="flgSaved" *ngIf="flgSave" type="button" class="btn btn-info m-2 btn-lg" (click)="saveSerie(parametriPagina.serie)">
+            Salva Sorteggio Serie {{parametriPagina.serie}}
+          </button>
+<!-- LF 16/07/2018 -->
+          <button *ngIf="flgSaved" type="button" class="btn btn-info m-2 btn-lg" (click)="staticEmailModal.show()">
+            Invia Sorteggio Serie {{parametriPagina.serie}} via Email
+          </button>
+          <button *ngIf="flgSaved" type="button" class="btn btn-info m-2 btn-lg" (click)="exportExcelSerie(parametriPagina.serie)">
+            Export Excel Serie {{parametriPagina.serie}}
+          </button>
+<!-- LF 16/07/2018 -->
+
+        </div>
+        <div class="col-xs-7">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Modal using ngx-bootstrap -->
+  <ng-template #template>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left" id="titleLabel">Sorteggio Girone <span class="badge badge-pill badge-info">{{girone}}</span></h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Container con la lista delle squadre -->
+        <div class="container-fluid" *ngIf="flagDraft">
+          <div class="row">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-8">
+              <div  class="table-responsive.lg">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>ODS</th>
+                      <th>Squadra</th>
+                      <th>Allenatore</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let gironeEstratto of squadreGironeEstratto" class="text-center">
+                      <!-- uso di ng-class   (usando ng-class si imbroglia l'editor
+                      <td><span ng-class="['badge', 'badge-pill', '{{gironeEstratto.fasciaSquadra}}', 'text-center', 'w-100']">{{gironeEstratto.ods}}</span></td>
+                      <td><span ng-class="['badge', 'badge-pill', '{{gironeEstratto.fasciaSquadra}}', 'text-center', 'w-100']">{{gironeEstratto.squadra}}</span></td>
+                      <td><span ng-class="['badge', 'badge-pill', '{{gironeEstratto.fasciaSquadra}}', 'text-center', 'w-100']">{{gironeEstratto.allenatore}}</span></td>
+                      -->
+                      <td><span class="badge badge-pill {{gironeEstratto.fasciaSquadra}} text-center w-100">{{gironeEstratto.ods}}</span></td>
+                      <td><span class="badge badge-pill {{gironeEstratto.fasciaSquadra}} text-center w-100">{{gironeEstratto.squadra}}</span></td>
+                      <td><span class="badge badge-pill {{gironeEstratto.fasciaSquadra}} text-center w-100">{{gironeEstratto.allenatore}}</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-8 text-center">
+              <button *ngIf="btnDraft" type="button" class="btn btn-success" (click)="avviaSorteggioGirone()">
+                Sorteggia Squadra <span class="badge badge-pill badge-warning">{{nSquadra}}</span>
+                Fascia <span class="badge badge-pill badge-warning">{{nFascia}}</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- ------------------------------------- -->
+        <!-- riga con la squadra sorteggiata -->
+        <div class="container-fluid" *ngIf="!flagDraft">
+          <div class="row">
+            <div class="col-1">
+            </div>
+            <div class="col-10 text-center">
+              <h3><span class="badge {{squadraEstratta.fasciaSquadra}}">Squadra Estratta</span></h3>
+            </div>
+            <div class="col-1">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-1">
+            </div>
+            <div class="col-10">
+              <div class="table-responsive-lg">
+                <table class="table">
+                  <thead>
+                    <tr class="text-center">
+                      <th>ODS</th>
+                      <th>Squadra</th>
+                      <th>Allenatore</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="text-center" >
+                      <td><span class="badge badge-pill {{squadraEstratta.fasciaSquadra}} text-center w-100">{{squadraEstratta.ods}}</span></td>
+                      <td><span class="badge badge-pill {{squadraEstratta.fasciaSquadra}} text-center w-100">{{squadraEstratta.squadra}}</span></td>
+                      <td><span class="badge badge-pill {{squadraEstratta.fasciaSquadra}} text-center w-100">{{squadraEstratta.allenatore}}</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="col-1">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4" >
+              <img alt="{{squadraEstrattaImmagini.squadra}}"
+                   class="img-thumbnail img-fluid float-left"
+                   src="{{squadraEstrattaImmagini.imgLogo}}" />
+            </div>
+            <div class="col-md-4" > <!-- ngModelGroup="squadraEstrattaImmagini"-->
+              <img alt="{{squadraEstrattaImmagini.squadra}}"
+                   class="img-thumbnail img-fluid mx-auto d-block"
+                   src="{{squadraEstrattaImmagini.imgMaglia}}" />
+            </div>
+            <div class="col-md-4" > <!-- ngModelGroup="squadraEstrattaImmagini"-->
+              <img alt="{{squadraEstrattaImmagini.allenatore}}"
+                   class="img-thumbnail img-fluid float-right"
+                   src="{{squadraEstrattaImmagini.imgAllenatore}}" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4 text-center">
+              <button type="button" class="btn btn-success" (click)="fillDraft()"> OK </button>
+            </div>
+          </div>
+        </div>
+        <!-- ----------------------------------- -->
+      </div>
+      <div class="modal-footer">
+        <button *ngIf="btnBack" type="button" class="btn btn-default" (click)="modalRef.hide()">Torna Indietro</button>
+      </div>
+    </div>
+  </ng-template>
+  <!--Fine Modal using ngx-bootstrap -->
+
+  <!-- Modal per la email -->
+  <div class="modal fade" bsModal #staticEmailModal="bs-modal" [config]="{backdrop: 'static'}"
+       tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 id="dialog-static-name" class="modal-title pull-left">Email</h4>
+          <button type="button" #btnClose class="close pull-right" aria-label="Close" (click)="staticEmailModal.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+
+          <div class="form-group">
+
+            <label for="eMailAddress">Indirizzo Email:</label>
+
+            <input type="email" class="form-control" id="eMailAddress" [(ngModel)]="eMailAddress">
+
+          </div>
+
+          <div class="form-group">
+            <button type="button" class="btn btn-success form-control" (click)="sendExcelByMail(parametriPagina.serie)">Invia</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal per la email -->
+
+  <!--Modal div-->
+<!--
+  <div  *ngIf="flagDraft">
+    <div class="modal fade" id="mSorteggioGirone" tabindex="-1" role="dialog" aria-labelledby="titleLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="titleLabel">Sorteggio Girone <span class="badge badge-pill badge-info">{{girone}}</span></h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            &lt;!&ndash; Container con la lista delle squadre &ndash;&gt;
+            <div class="container-fluid" *ngIf="flagDraft">
+              <div class="row">
+                <div class="col-md-2">
+                </div>
+                <div class="col-md-8 offset-2">
+                  <table class="table table-responsive">
+                    <thead>
+                    <tr>
+                      <th>ODS</th>
+                      <th>Squadra</th>
+                      <th>Allenatore</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let gironeEstratto of squadreGironeEstratto" class="text-center">
+                      &lt;!&ndash; uso di ng-class   (usando ng-class si imbroglia l'editor
+                      <td><span ng-class="['badge', 'badge-pill', '{{gironeEstratto.fasciaSquadra}}', 'text-center', 'w-100']">{{gironeEstratto.ods}}</span></td>
+                      <td><span ng-class="['badge', 'badge-pill', '{{gironeEstratto.fasciaSquadra}}', 'text-center', 'w-100']">{{gironeEstratto.squadra}}</span></td>
+                      <td><span ng-class="['badge', 'badge-pill', '{{gironeEstratto.fasciaSquadra}}', 'text-center', 'w-100']">{{gironeEstratto.allenatore}}</span></td>
+                      &ndash;&gt;
+                      <td><span class="badge badge-pill {{gironeEstratto.fasciaSquadra}} text-center w-100">{{gironeEstratto.ods}}</span></td>
+                      <td><span class="badge badge-pill {{gironeEstratto.fasciaSquadra}} text-center w-100">{{gironeEstratto.squadra}}</span></td>
+                      <td><span class="badge badge-pill {{gironeEstratto.fasciaSquadra}} text-center w-100">{{gironeEstratto.allenatore}}</span></td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-2">
+                </div>
+                <div class="col-md-8 offset-2 text-center">
+                  <button *ngIf="btnDraft" type="button" class="btn btn-success" (click)="avviaSorteggioGirone()">
+                    Sorteggia Squadra <span class="badge badge-pill badge-warning">{{nSquadra}}</span>
+                    Fascia <span class="badge badge-pill badge-warning">{{nFascia}}</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            &lt;!&ndash; -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; &ndash;&gt;
+            &lt;!&ndash; riga con la squadra sorteggiata &ndash;&gt;
+            <div class="container-fluid" *ngIf="!flagDraft">
+              <div class="row">
+                <div class="col-md-1">
+                </div>
+                <div class="col-md-10 offset-1 text-center">
+                  <h4 class="success">Squadra Estratta</h4>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-1">
+                </div>
+                <div class="col-md-10 offset-1">
+                  <table class="table table-responsive">
+                    <thead>
+                    <tr>
+                      <th>ODS</th>
+                      <th>Squadra</th>
+                      <th>Allenatore</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="text-center" >
+                      <td><span class="badge badge-pill {{squadraEstratta.fasciaSquadra}} text-center w-100">{{squadraEstratta.ods}}</span></td>
+                      <td><span class="badge badge-pill {{squadraEstratta.fasciaSquadra}} text-center w-100">{{squadraEstratta.squadra}}</span></td>
+                      <td><span class="badge badge-pill {{squadraEstratta.fasciaSquadra}} text-center w-100">{{squadraEstratta.allenatore}}</span></td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4 " >
+                  <img alt="{{squadraEstrattaImmagini.squadra}}"
+                       class="img-thumbnail img-fluid float-left"
+                       src="{{squadraEstrattaImmagini.imgLogo}}" />"
+                  >
+                </div>
+                <div class="col-md-4 offset-4" ngModelGroup="squadraEstrattaImmagini">
+                  <img alt="{{squadraEstrattaImmagini.squadra}}"
+                       class="img-thumbnail img-fluid mx-auto d-block"
+                       src="{{squadraEstrattaImmagini.imgMaglia}}" />"
+                  >
+                </div>
+                <div class="col-md-4 offset-8" ngModelGroup="squadraEstrattaImmagini">
+                  <img alt="{{squadraEstrattaImmagini.allenatore}}"
+                       class="img-thumbnail img-fluid float-right"
+                       src="{{squadraEstrattaImmagini.imgAllenatore}}" />"
+                  >
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                </div>
+                <div class="col-md-4 offset-4 text-center">
+                  <button type="button" class="btn btn-success" (click)="fillDraft()"> OK </button>
+                </div>
+              </div>
+            </div>
+            &lt;!&ndash; -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; &ndash;&gt;
+          </div>
+          <div class="modal-footer">
+            <button *ngIf="btnBack" type="button" class="btn btn-default" data-dismiss="modal">Torna Indietro</button>
+          </div>
+        </div>
+      </div>
+    </div>
+ </div>
+-->
+  <!-- fine modal div -->
+
+</div>
+

@@ -1,0 +1,76 @@
+<div class="py-5">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-1 bg-primary text-center">
+        <img alt="" src="assets/img/logoLF.gif" width="162" hight="160"  >
+      </div>
+      <div class="col-md-8 bg-primary text-center text-capitalize">
+
+        <h2 class="display-4 my-5">Gestione Sorteggio Lega Forum</h2>
+      </div>
+      <div class="col-md-1 bg-primary text-center">
+        <img alt="" src="assets/img/logoLF.gif" width="162" hight="160"  >
+      </div>
+      <div class="col-md-1"></div>
+    </div>
+  </div>
+</div>
+<div class="w-100 h-100 m-0 py-5">
+  <div class="container-fluid">
+    <div class="row m-2 h-25">
+      <div class="col-md-4"></div>
+      <div class="col-md-4 py-2">
+
+        <button type="button" class="btn btn-success w-100 h-100 btn-lg btn-block active" (click)="staticPwdModal.show()">
+          <h2>Sorteggio Nuova Stagione</h2>
+        </button>
+
+      </div>
+      <div class="col-md-4"></div>
+    </div>
+    <div class="row m-2 h-25">
+      <div class="col-md-4"></div>
+      <div class="col-md-4 py-2">
+        <a routerLink='/storico-sorteggi' class="btn btn-warning w-100 h-75 text-center btn-lg btn-block active">
+          <h2> Storico Sorteggi </h2>
+        </a>
+      </div>
+      <div class="col-md-4"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal per la password -->
+<div class="modal fade" bsModal #staticPwdModal="bs-modal" [config]="{backdrop: 'static'}"
+     tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="dialog-static-name" class="modal-title pull-left">Authenticate</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="staticPwdModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+
+        <div class="form-group">
+
+          <label for="pwd">Password:</label>
+
+            <show-hide-password size="" icon="fontawesome">
+              <input type="password" class="form-control" id="pwd" [(ngModel)]="pwd">
+            </show-hide-password>
+
+        </div>
+
+        <div class="form-group">
+          <button type="button" class="btn btn-success form-control" (click)="checkPassword()">Ok</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal per la password -->
