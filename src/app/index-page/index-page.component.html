@@ -21,11 +21,9 @@
     <div class="row m-2 h-25">
       <div class="col-md-4"></div>
       <div class="col-md-4 py-2">
-
-        <button type="button" class="btn btn-success w-100 h-100 btn-lg btn-block active" (click)="staticPwdModal.show()">
+        <button [disabled]="sorteggioDone" type="button" class="btn btn-success w-100 h-100 btn-lg btn-block active" (click)="staticPwdModal.show()">
           <h2>Sorteggio Nuova Stagione</h2>
         </button>
-
       </div>
       <div class="col-md-4"></div>
     </div>

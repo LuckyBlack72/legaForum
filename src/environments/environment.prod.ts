@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  backEndURL : 'http://sorteggiolegaforum.herokuapp.com/'
+  backEndURL : 'https://sorteggiolegaforum.herokuapp.com/' 
 };

@@ -95,57 +95,26 @@ export class SorteggioService {
   // LF 16/07/2018
   sendSorteggioByMail (serie: string, stagione: string, excelData: DatiSquadra[][], recipient: string): Observable<string> {
 
+    const postData = {
+                        recipient : recipient,
+                        sender : 'fantasportLB@gmail.com',
+                        mailSubject : 'Export Sorteggio Serie: ' + serie + ' Stagione: ' + stagione,
+                        mailText : 'In allegato il file richiesto',
+                        excelData : excelData,
+                        serie : serie,
+                        stagione: stagione
+                    };
 
-
-    /*
-        const workbook = XLSX.utils.book_new();
-        let excelRows: ExcelRow[] = [];
-
-        for (let i = 0 ; i < sorteggioSerie.length ; i++) {
-
-          for (let j = 0; j < sorteggioSerie[i].length; j++) {
-            excelRows.push({squadra: sorteggioSerie[i][j].squadra ,
-              allenatore: sorteggioSerie[i][j].allenatore,
-              ods: sorteggioSerie[i][j].ods});
-          }
-
-          XLSX.utils.book_append_sheet(workbook,
-            XLSX.utils.json_to_sheet(excelRows),
-            'Serie' + ' ' + serie + ' - ' + 'Girone ' +  sorteggioSerie[i][0].girone
-          );
-
-          excelRows = []; // ripulisco la array
-        }
-*/
-
-        const postData = {
-                            recipient : recipient,
-                            sender : 'fantasportLB@gmail.com',
-                            mailSubject : 'Export Sorteggio Serie: ' + serie + ' Stagione: ' + stagione,
-                            mailText : 'In allegato il file richiesto',
-                            excelData : excelData,
-                            serie : serie,
-                            stagione: stagione
-                        };
-
-        return this.http.post<string>(this.utils.BASE_URL_BACKEND + '/sendMail', postData);
-
+    return this.http.post<string>(this.utils.BASE_URL_BACKEND + '/sendMail', postData);
   }
-
-
-
-  /*
-    for (var i = 0 ; i < fasceAfterDraft.length ; i++){
-    var worksheet = workbook.addWorksheet('Serie' + ' ' + req.body.serie + ' - ' + 'Girone ' +  fasceAfterDraft[i][0]['girone']);
-    worksheet.addRow(['Squadra', 'Allenatore', 'Ods']).commit();
-    res.write(chunck);
-    for(var j = 0 ; j < fasceAfterDraft[i].length ; j++){
-    worksheet.addRow([fasceAfterDraft[i][j]['squadra'],fasceAfterDraft[i][j]['allenatore'],fasceAfterDraft[i][j]['ods']]).commit();
-  }
-  worksheet.commit();
-  }
-  workbook.commit();
-  */
   // LF 16/07/2018
+
+  checkSorteggio (stagione: string): Observable<string> {
+
+    const postData = {stagione : stagione};
+
+    return this.http.post<string>(this.utils.BASE_URL_BACKEND + '/checkSorteggio', postData);
+
+  }
 
 }
