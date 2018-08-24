@@ -36,6 +36,15 @@
       </div>
       <div class="col-md-4"></div>
     </div>
+    <div class="row m-2 h-25">
+      <div class="col-md-4"></div>
+      <div class="col-md-4 py-2">
+        <button type="button" class="btn btn-primary w-100 h-100 btn-lg btn-block active" (click)="staticEmailModal.show()">
+          <h2>Invia Sorteggio per Email</h2>
+        </button>
+      </div>
+      <div class="col-md-4"></div>
+    </div>    
   </div>
 </div>
 
@@ -72,3 +81,49 @@
   </div>
 </div>
 <!-- Modal per la password -->
+
+  <!-- Modal per la email -->
+  <div class="modal fade" bsModal #staticEmailModal="bs-modal" [config]="{backdrop: 'static'}"
+       tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 id="dialog-static-name" class="modal-title pull-left">Invio Sorteggio per Email</h4>
+          <button type="button" #btnClose class="close pull-right" aria-label="Close" (click)="staticEmailModal.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+
+          <div class="form-group">
+            <label for="st">Stagione</label>
+            <select #st id="st" [(ngModel)]="stagioneSelezionata">
+              <option class="form-control" value="XXX">Seleziona una Stagione</option> <!-- not selected / blank option -->
+              <option class="form-control" *ngFor="let stagione of listaStagioni" [value]="stagione.stagione">{{ stagione.stagione }}</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="st">Serie</label>
+            <select #sr id="sr" [(ngModel)]="serieSelezionata">
+              <option class="form-control" value="X">Seleziona una Serie</option> <!-- not selected / blank option -->
+              <option class="form-control" *ngFor="let serie of listaSerie" [value]="serie">{{ serie }}</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="eMailAddress">Indirizzo Email:</label>
+            <input type="email" class="form-control" id="eMailAddress" [(ngModel)]="eMailAddress">
+          </div>
+
+          <div class="form-group">
+            <button type="button" class="btn btn-success form-control" (click)="sendExcelByMail()">Invia</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal per la email -->
+
