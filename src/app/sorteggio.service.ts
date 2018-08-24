@@ -10,9 +10,6 @@ import {tap} from 'rxjs/operators';
 
 import * as XLSX from 'xlsx';
 
-import { environment } from '../environments/environment';
-
-
 @Injectable()
 export class SorteggioService {
 
@@ -41,7 +38,7 @@ export class SorteggioService {
 
   checkPassword (pwd: string): Observable<string> {
 
-    const postData = {headers: environment.proxyOptions, password : pwd };
+    const postData = {password : pwd };
 
     return this.http.post<string>(this.utils.BASE_URL_BACKEND + '/checkPassword', postData);
 

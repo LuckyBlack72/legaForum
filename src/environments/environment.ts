@@ -5,6 +5,5 @@
 
 export const environment = {
   production: false,
-  backEndURL : 'http://localhost:2108',
-  proxyOptions: {}
+  backEndURL : 'http://localhost:2108'
 };

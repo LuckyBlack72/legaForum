@@ -1,9 +1,7 @@
 // server.js
 const express = require('express');
-const proxy = require('http-proxy-middleware');
 
 const app = express();
-const baseApiUrl = 'https://sorteggiolegaforum.herokuapp.com';
 
 // Run the app by serving the static files
 // in the dist directory
@@ -24,19 +22,6 @@ const forceSSL = function() {
 // to use the forceSSL
 // middleware
 app.use(forceSSL());
-
-//proxy middleware
-let options = {
-  target: baseApiUrl,
-  changeOrigin: true,
-  logLevel: 'debug',
-  onError: function onError(err, req, res) {
-    console.log('Something went wrong with the proxy middleware.', err);
-    res.end();
-  }
- };
- app.use('/backEnd', proxy(options)); //only forward calls with '/backEnd' route
-//proxy middleware
 
 // Heroku port
 app.listen(process.env.PORT || 4200);
