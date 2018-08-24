@@ -25,7 +25,9 @@ export class IndexPageComponent implements OnInit {
           this.router.navigate(['/scegli-serie']) ;
       } ,
       error => { // error path
-        alert('Password Errata');
+        //alert('Password Errata'); test rimettere
+        this.pwd = '';
+        this.router.navigate(['/scegli-serie']) ;
       }
     );
 
@@ -33,7 +35,10 @@ export class IndexPageComponent implements OnInit {
 
   checkSorteggio (): void {
 
-    this.sorteggioService.checkPassword(this.pwd).subscribe(
+    this.sorteggioDone = false; //test
+
+    /*
+    this.sorteggioService.checkSorteggio(this.pwd).subscribe(
       data => this.sorteggioDone = false, // success path sorteggio da fare/finire
       error =>{
                 if(environment.production){
@@ -43,6 +48,7 @@ export class IndexPageComponent implements OnInit {
                 }
       }
     );
+    */
 
   }
 
