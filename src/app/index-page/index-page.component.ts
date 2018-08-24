@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import {SorteggioService} from '../sorteggio.service';
+import { SorteggioService } from '../sorteggio.service';
 import { environment } from '../../environments/environment';
+import { Utils } from '../models/utils';
 
 @Component({
   selector: 'app-index-page',
@@ -15,19 +16,17 @@ export class IndexPageComponent implements OnInit {
   pwd: string;
   sorteggioDone: boolean;
 
-  constructor(private sorteggioService: SorteggioService, private router: Router) { }
+  constructor(private sorteggioService: SorteggioService, private router: Router, private utils: Utils) { }
 
   checkPassword (): void {
 
-    this.sorteggioService.checkSorteggio(this.pwd).subscribe(
+    this.sorteggioService.checkPassword(this.pwd).subscribe(
       data => { // success path
           this.pwd = '';
           this.router.navigate(['/scegli-serie']) ;
       } ,
       error => { // error path
-        //alert('Password Errata'); test rimettere
-        this.pwd = '';
-        this.router.navigate(['/scegli-serie']) ;
+        alert('Password Errata'); 
       }
     );
 
@@ -38,7 +37,7 @@ export class IndexPageComponent implements OnInit {
     this.sorteggioDone = false; //test
 
     /*
-    this.sorteggioService.checkSorteggio(this.pwd).subscribe(
+    this.sorteggioService.checkSorteggio(this.utils.getStagione().substring(0,4)).subscribe(
       data => this.sorteggioDone = false, // success path sorteggio da fare/finire
       error =>{
                 if(environment.production){

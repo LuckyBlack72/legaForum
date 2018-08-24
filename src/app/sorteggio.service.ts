@@ -10,6 +10,8 @@ import {tap} from 'rxjs/operators';
 
 import * as XLSX from 'xlsx';
 
+import { environment } from '../environments/environment';
+
 @Injectable()
 export class SorteggioService {
 
@@ -96,12 +98,13 @@ export class SorteggioService {
 
     const postData = {
                         recipient : recipient,
-                        sender : 'fantasportLB@gmail.com',
+                        sender : environment.mailSender,
                         mailSubject : 'Export Sorteggio Serie: ' + serie + ' Stagione: ' + stagione,
                         mailText : 'In allegato il file richiesto',
                         excelData : excelData,
                         serie : serie,
-                        stagione: stagione
+                        stagione: stagione,
+                        environment : environment.production ? 'PRD' : 'DEV'
                     };
 
     return this.http.post<string>(this.utils.BASE_URL_BACKEND + '/sendMail', postData);
