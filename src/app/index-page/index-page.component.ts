@@ -34,9 +34,6 @@ export class IndexPageComponent implements OnInit {
 
   checkSorteggio (): void {
 
-    this.sorteggioDone = false; //test
-
-    /*
     this.sorteggioService.checkSorteggio(this.utils.getStagione().substring(0,4)).subscribe(
       data => this.sorteggioDone = false, // success path sorteggio da fare/finire
       error =>{
@@ -47,7 +44,6 @@ export class IndexPageComponent implements OnInit {
                 }
       }
     );
-    */
 
   }
 
