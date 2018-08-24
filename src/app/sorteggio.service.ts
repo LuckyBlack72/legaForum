@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map'; // per il get e il post non tipizzati
 
-import {DatiSquadra, ExcelRow, Squadra} from './models/models';
+import {DatiSquadra, ExcelRow} from './models/models';
 import {Utils} from './models/utils';
 import {tap} from 'rxjs/operators';
 
 import * as XLSX from 'xlsx';
+
+import { environment } from '../environments/environment';
 
 
 @Injectable()
@@ -39,7 +41,7 @@ export class SorteggioService {
 
   checkPassword (pwd: string): Observable<string> {
 
-    const postData = {password : pwd};
+    const postData = {headers: environment.proxyOptions, password : pwd };
 
     return this.http.post<string>(this.utils.BASE_URL_BACKEND + '/checkPassword', postData);
 

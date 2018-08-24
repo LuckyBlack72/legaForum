@@ -1,12 +1,15 @@
 // server.js
-const express = require('express');
+//const express = require('express');
+import express from 'express';
+import proxy from 'http-proxy-middleware';
+
 const app = express();
+const baseApiUrl = 'https://sorteggiolegaforum.herokuapp.com';
+
 // Run the app by serving the static files
 // in the dist directory
 app.use(express.static(__dirname + '/dist'));
 // Start the app by listening on the default
-// Heroku port
-app.listen(process.env.PORT || 4200);
 
 const forceSSL = function() {
   return function (req, res, next) {
@@ -23,10 +26,18 @@ const forceSSL = function() {
 // middleware
 app.use(forceSSL());
 
-app.use(function(req, res, next) {
-  //Cross origin allowance
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Method", "POST, OPTIONS, GET");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
+//proxy middleware
+let options = {
+  target: baseApiUrl,
+  changeOrigin: true,
+  logLevel: 'debug',
+  onError: function onError(err, req, res) {
+    console.log('Something went wrong with the proxy middleware.', err);
+    res.end();
+  }
+ };
+ app.use('/backEnd', proxy(options)); //only forward calls with '/backEnd' route
+//proxy middleware
+
+// Heroku port
+app.listen(process.env.PORT || 4200);
