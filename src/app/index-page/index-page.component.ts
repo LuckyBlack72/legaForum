@@ -169,7 +169,9 @@ export class IndexPageComponent implements OnInit {
       Swal.mixin({
         confirmButtonText: 'Avanti &rarr;',
         showCancelButton: true,
-        progressSteps: ['1', '2', '3']
+        progressSteps: ['1', '2', '3'],
+        allowOutsideClick: false,
+        allowEscapeKey: false,
       }).queue([
         {
           input: 'select',
