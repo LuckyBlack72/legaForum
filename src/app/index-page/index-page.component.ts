@@ -1,6 +1,6 @@
 import { ViewChild, ElementRef, Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 
 import { SorteggioService } from '../sorteggio.service';
 import {StoricoSorteggioService} from '../storico-sorteggio.service';

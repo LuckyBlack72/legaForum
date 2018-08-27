@@ -229,7 +229,8 @@
             Salva Sorteggio Serie {{parametriPagina.serie}}
           </button>
 <!-- LF 16/07/2018 -->
-          <button *ngIf="flgSaved" type="button" class="btn btn-info m-2 btn-lg" (click)="staticEmailModal.show()">
+          <!-- <button *ngIf="flgSaved" type="button" class="btn btn-info m-2 btn-lg" (click)="staticEmailModal.show()"> -->
+          <button *ngIf="flgSaved" [swal]="emailSwal" type="button" class="btn btn-info m-2 btn-lg">
             Invia Sorteggio Serie {{parametriPagina.serie}} via Email
           </button>
           <button *ngIf="flgSaved" type="button" class="btn btn-info m-2 btn-lg" (click)="exportExcelSerie(parametriPagina.serie)">
@@ -369,6 +370,15 @@
   <!--Fine Modal using ngx-bootstrap -->
 
   <!-- Modal per la email -->
+  <swal
+  #emailSwal
+  title="Invio Sorteggio per Email"
+  input="email"
+  inputPlaceholder="Inserisci Indirizzo Email"
+  (confirm)="sendExcelByMail($event, parametriPagina.serie)">
+  <swal>  
+
+  <!--
   <div class="modal fade" bsModal #staticEmailModal="bs-modal" [config]="{backdrop: 'static'}"
        tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
     <div class="modal-dialog modal-sm">
@@ -398,6 +408,7 @@
       </div>
     </div>
   </div>
+  -->
   <!-- Modal per la email -->
 
   <!--Modal div-->
@@ -524,6 +535,4 @@
  </div>
 -->
   <!-- fine modal div -->
-
-</div>
 

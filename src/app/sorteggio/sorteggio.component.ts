@@ -1,7 +1,9 @@
-import { ViewChild, Component, Input, OnInit, TemplateRef, ElementRef } from '@angular/core';
+//import { ViewChild, Component, Input, OnInit, TemplateRef, ElementRef } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import * as _ from 'lodash';
+import Swal from 'sweetalert2';
 
 import {ParametriPaginaSorteggi,
         DatiSquadra,
@@ -22,7 +24,7 @@ import {SorteggioService} from '../sorteggio.service';
 
 export class SorteggioComponent implements OnInit {
 
-  @ViewChild('btnClose') btnClose: ElementRef;
+  //@ViewChild('btnClose') btnClose: ElementRef;
 
   @Input() parametriPagina: ParametriPaginaSorteggi;
 
@@ -364,10 +366,20 @@ export class SorteggioComponent implements OnInit {
     this.sorteggioService.saveSerie(this.fasceToSave, serie, this.stagione.substr(0,4 )).subscribe(
       data => {
                       this.flgSaved = true;
-                      alert('Dati Salvati con Successo');
+                      Swal({
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        title: 'Dati Salvati',
+                        type: 'success'
+                      }) 
                     } , // success path
-      error => alert('Errore Salvataggio Dati') // error path
-    );
+      error =>  Swal({
+                  allowOutsideClick: false,
+                  allowEscapeKey: false,
+                  title: 'Errore Salvataggio Dati',
+                  type: 'error'
+                })  // error path
+  );
 
   }
 
@@ -378,17 +390,45 @@ export class SorteggioComponent implements OnInit {
 
   }
 
-  sendExcelByMail(serie: string): void {
+  sendExcelByMail(emailAddress: string, serie: string): void {
 
+    this.eMailAddress = emailAddress;
     this.sorteggioService.getSorteggioStagioneSerie(this.stagione.substr(0, 4 ), serie ).subscribe(
       data => {
         this.sorteggioService.sendSorteggioByMail(serie, this.stagione.substr(0, 4 ), data, this.eMailAddress).subscribe(
-          mailOk => { this.eMailAddress = ''; this.btnClose.nativeElement.click(); alert('Email inviata'); }
+          mailOk => { 
+                      this.eMailAddress = ''; 
+                      //this.btnClose.nativeElement.click(); 
+                      Swal({
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        title: 'Email inviata',
+                        type: 'success'
+                      }) 
+                    }
           , // success path
-          mailKo => { this.eMailAddress = ''; this.btnClose.nativeElement.click(); alert('Errore invio Email'); } // error path
+          mailKo => { 
+                      this.eMailAddress = ''; 
+                      //this.btnClose.nativeElement.click(); 
+                      Swal({
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        title: 'Errore Invio Email',
+                        type: 'error'
+                      }) 
+                    } // error path
         );
       },
-      error => { this.eMailAddress = ''; this.btnClose.nativeElement.click(); alert('Errore invio Email'); }
+      error =>  { 
+                  this.eMailAddress = ''; 
+                  //this.btnClose.nativeElement.click(); 
+                  Swal({
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                    title: 'Errore Invio Email',
+                    type: 'error'
+                  }) 
+                }
     ); // error path
 
   }
@@ -416,7 +456,5 @@ export class SorteggioComponent implements OnInit {
     this.flagDraft = false;
     this.flgSaved = false;
   }
-
-
 
 }
