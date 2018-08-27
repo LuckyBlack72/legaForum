@@ -60,18 +60,6 @@ export class IndexPageComponent implements OnInit {
       }
     }
 
-    /*
-    this.sorteggioService.checkSorteggio(this.utils.getStagione().substring(0,4)).subscribe(
-      data => this.sorteggioDone = false, // success path sorteggio da fare/finire
-      error =>{
-                if(environment.production){
-                  this.sorteggioDone = true // produzione
-                }else{
-                  this.sorteggioDone = false // sviluppo
-                }
-      }
-    );
-    */
 
   }
 
@@ -145,13 +133,6 @@ export class IndexPageComponent implements OnInit {
       this.stagioneSelezionata =  "XXX";
       this.serieSelezionata = "X";
   });
-
-  /*
-    this.checkSorteggio();
-    this.getListaStagioni();
-    this.stagioneSelezionata =  "XXX";
-    this.serieSelezionata = "X";
-  */
 
   }
 
