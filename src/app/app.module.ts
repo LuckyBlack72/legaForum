@@ -14,10 +14,11 @@ import {SorteggioService} from './sorteggio.service';
 import { SerieBComponent } from './serie-b/serie-b.component';
 import { SerieCComponent } from './serie-c/serie-c.component';
 import { StoricoSorteggiComponent } from './storico-sorteggi/storico-sorteggi.component';
+
 import { ModalModule, AccordionModule } from 'ngx-bootstrap';
 import { ShowHidePasswordModule } from 'ngx-show-hide-password';
 import {FormsModule} from '@angular/forms';
-
+import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,13 @@ import {FormsModule} from '@angular/forms';
     HttpClientModule,
     ModalModule.forRoot(),
     AccordionModule.forRoot(),
-    ShowHidePasswordModule.forRoot()
+    ShowHidePasswordModule.forRoot(),
+    SweetAlert2Module.forRoot( {
+      buttonsStyling: true,
+      allowOutsideClick: false,
+      allowEscapeKey: false,
+      customClass: 'modal-content'
+    })
   ],
   providers: [Utils,SorteggioDoneResolver,SorteggioService],
   bootstrap: [AppComponent]
