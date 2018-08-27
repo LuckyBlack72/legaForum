@@ -7,10 +7,12 @@ import {SerieBComponent} from './serie-b/serie-b.component';
 import {SerieCComponent} from './serie-c/serie-c.component';
 import {StoricoSorteggiComponent} from './storico-sorteggi/storico-sorteggi.component';
 import {SorteggioComponent} from './sorteggio/sorteggio.component';
+import {SorteggioDoneResolver} from './index-page/sorteggioDone-resolver';
 
+//qui si mettono i resolver per i vari routing
 const routes: Routes = [
   { path: '', redirectTo: '/index-page', pathMatch: 'full' },
-  { path: 'index-page', component: IndexPageComponent },
+  { path: 'index-page', component: IndexPageComponent, resolve: {sorteggioCheck: SorteggioDoneResolver} },
   { path: 'scegli-serie', component: ScegliSerieComponent },
   { path: 'serie-a', component: SerieAComponent },
   { path: 'serie-b', component: SerieBComponent },

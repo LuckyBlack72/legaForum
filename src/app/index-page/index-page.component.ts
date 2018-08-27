@@ -1,8 +1,10 @@
 import { ViewChild, ElementRef, Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { SorteggioService } from '../sorteggio.service';
 import {StoricoSorteggioService} from '../storico-sorteggio.service';
+import {SorteggioDoneResolver} from './sorteggioDone-resolver';
+
 import { environment } from '../../environments/environment';
 import { Utils } from '../models/utils';
 import { Stagione } from '../models/models';
@@ -11,7 +13,7 @@ import { Stagione } from '../models/models';
   selector: 'app-index-page',
   templateUrl: './index-page.component.html',
   styleUrls: ['./index-page.component.css'],
-  providers: [SorteggioService, StoricoSorteggioService]
+  providers: [SorteggioService, StoricoSorteggioService, SorteggioDoneResolver]
 })
 export class IndexPageComponent implements OnInit {
 
@@ -30,7 +32,7 @@ export class IndexPageComponent implements OnInit {
   listaSerie: string[];
   
 
-  constructor(private sorteggioService: SorteggioService, private storicoSorteggioService: StoricoSorteggioService, private router: Router, private utils: Utils) { }
+  constructor(private sorteggioService: SorteggioService, private storicoSorteggioService: StoricoSorteggioService, private router: Router, private activatedRoute: ActivatedRoute, private utils: Utils) { }
 
   checkPassword (): void {
 
@@ -46,8 +48,19 @@ export class IndexPageComponent implements OnInit {
 
   }  
 
-  checkSorteggio (): void {
+  checkSorteggio (sorteggioDone: boolean): void {
 
+    if(sorteggioDone){ //sorteggio effettuabile
+      this.sorteggioDone = false;
+    }else{
+      if(environment.production){
+        this.sorteggioDone = true // produzione
+      }else{
+        this.sorteggioDone = false // sviluppo
+      }
+    }
+
+    /*
     this.sorteggioService.checkSorteggio(this.utils.getStagione().substring(0,4)).subscribe(
       data => this.sorteggioDone = false, // success path sorteggio da fare/finire
       error =>{
@@ -58,6 +71,7 @@ export class IndexPageComponent implements OnInit {
                 }
       }
     );
+    */
 
   }
 
@@ -125,11 +139,19 @@ export class IndexPageComponent implements OnInit {
 
   ngOnInit() {
 
+    this.activatedRoute.data.subscribe(({ sorteggioCheck }) => {
+      this.checkSorteggio(sorteggioCheck);
+      this.getListaStagioni();
+      this.stagioneSelezionata =  "XXX";
+      this.serieSelezionata = "X";
+  });
+
+  /*
     this.checkSorteggio();
     this.getListaStagioni();
     this.stagioneSelezionata =  "XXX";
     this.serieSelezionata = "X";
-  
+  */
 
   }
 

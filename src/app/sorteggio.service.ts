@@ -111,11 +111,11 @@ export class SorteggioService {
   }
   // LF 16/07/2018
 
-  checkSorteggio (stagione: string): Observable<string> {
+  checkSorteggio (stagione: string): Observable<boolean> {
 
     const postData = {stagione : stagione};
 
-    return this.http.post<string>(this.utils.BASE_URL_BACKEND + '/checkSorteggio', postData);
+    return this.http.post<boolean>(this.utils.BASE_URL_BACKEND + '/checkSorteggio', postData);
 
   }
 
