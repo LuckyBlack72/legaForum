@@ -127,8 +127,6 @@ export class SorteggioComponent implements OnInit {
 
   getSquadraToDraft (fascia: number ): SquadraSorteggiata { // fascia da 0-3 [0=1 , 1=2 , 2=3 , 3=4]
 
-    console.log('fascia : ' + fascia);
-
     let squadra = 0;
     let fasciaSquadra = '';
 
@@ -306,7 +304,6 @@ export class SorteggioComponent implements OnInit {
 
   setDatiToSave (squadra: string, fascia: number, girone: string, ods: string): void {
 
-    console.log('SetDatiToSave Parametri: ' + squadra + ' ' + fascia + ' ' + girone + ' ' + ods);
     const fasciaToInspect = fascia - 1;
 
     for (let i = 0; i < this.fasceToSave[fasciaToInspect].length; i++) {
