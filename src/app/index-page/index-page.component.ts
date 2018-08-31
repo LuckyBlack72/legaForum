@@ -3,8 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
 
 import { SorteggioService } from '../sorteggio.service';
-import {StoricoSorteggioService} from '../storico-sorteggio.service';
-import {SorteggioDoneResolver} from './sorteggioDone-resolver';
+import { StoricoSorteggioService } from '../storico-sorteggio.service';
+import { SorteggioDoneResolver } from './sorteggioDone-resolver';
 
 import { environment } from '../../environments/environment';
 import { Stagione } from '../models/models';
@@ -17,7 +17,6 @@ import { Stagione } from '../models/models';
 export class IndexPageComponent implements OnInit {
 
   @ViewChild('btnClose') btnClose: ElementRef;
-  @ViewChild('btnSorteggio') btnSorteggio: ElementRef;
   @ViewChild('eMailAddress') inpEmail: ElementRef;
   @ViewChild('st') stCmb: ElementRef;
   @ViewChild('sr') srCmb: ElementRef;  
@@ -32,8 +31,6 @@ export class IndexPageComponent implements OnInit {
   listaSerie: string[];
   listaStagioniSwal: {};
   listaSerieSwal: {};
-
-  hotkeyCtrlI: Hotkey | Hotkey[];
 
   constructor(private sorteggioService: SorteggioService, 
               private storicoSorteggioService: StoricoSorteggioService, 
