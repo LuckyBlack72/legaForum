@@ -1,4 +1,4 @@
-import { ViewChild, ElementRef, Component, OnInit } from '@angular/core';
+import { ViewChild, ElementRef, Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
 
@@ -7,9 +7,7 @@ import {StoricoSorteggioService} from '../storico-sorteggio.service';
 import {SorteggioDoneResolver} from './sorteggioDone-resolver';
 
 import { environment } from '../../environments/environment';
-import { Utils } from '../models/utils';
 import { Stagione } from '../models/models';
-
 @Component({
   selector: 'app-index-page',
   templateUrl: './index-page.component.html',
@@ -19,6 +17,7 @@ import { Stagione } from '../models/models';
 export class IndexPageComponent implements OnInit {
 
   @ViewChild('btnClose') btnClose: ElementRef;
+  @ViewChild('btnSorteggio') btnSorteggio: ElementRef;
   @ViewChild('eMailAddress') inpEmail: ElementRef;
   @ViewChild('st') stCmb: ElementRef;
   @ViewChild('sr') srCmb: ElementRef;  
@@ -34,7 +33,13 @@ export class IndexPageComponent implements OnInit {
   listaStagioniSwal: {};
   listaSerieSwal: {};
 
-  constructor(private sorteggioService: SorteggioService, private storicoSorteggioService: StoricoSorteggioService, private router: Router, private activatedRoute: ActivatedRoute, private utils: Utils) { }
+  hotkeyCtrlI: Hotkey | Hotkey[];
+
+  constructor(private sorteggioService: SorteggioService, 
+              private storicoSorteggioService: StoricoSorteggioService, 
+              private router: Router, 
+              private activatedRoute: ActivatedRoute, 
+            ) { }
 
   checkPassword (pwd: string): void {
 
