@@ -22,6 +22,12 @@ import { ShowHidePasswordModule } from 'ngx-show-hide-password';
 import {FormsModule} from '@angular/forms';
 import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
 
+// Hotkeys
+import { HotkeyModule } from 'angular2-hotkeys';
+import 'rxjs/add/operator/toPromise';
+import { CommandService } from './command.service';
+// HotKeys
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,9 +52,10 @@ import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
       allowOutsideClick: false,
       allowEscapeKey: false,
       customClass: 'modal-content'
-    })
+    }),
+    HotkeyModule.forRoot()
   ],
-  providers: [Utils, SorteggioDoneResolver, RankingPresentResolver, SorteggioService],
+  providers: [Utils, SorteggioDoneResolver, RankingPresentResolver, SorteggioService, CommandService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

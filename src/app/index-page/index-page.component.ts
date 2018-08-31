@@ -8,13 +8,16 @@ import { SorteggioDoneResolver } from './sorteggioDone-resolver';
 
 import { environment } from '../../environments/environment';
 import { Stagione } from '../models/models';
+
+import { Command, CommandService } from '../command.service';
+import { Subscription } from 'rxjs/Subscription';
 @Component({
   selector: 'app-index-page',
   templateUrl: './index-page.component.html',
   styleUrls: ['./index-page.component.css'],
   providers: [SorteggioService, StoricoSorteggioService, SorteggioDoneResolver]
 })
-export class IndexPageComponent implements OnInit {
+export class IndexPageComponent implements OnInit, OnDestroy {
 
   @ViewChild('btnClose') btnClose: ElementRef;
   @ViewChild('eMailAddress') inpEmail: ElementRef;
@@ -32,11 +35,18 @@ export class IndexPageComponent implements OnInit {
   listaStagioniSwal: {};
   listaSerieSwal: {};
 
+  subscription: Subscription;
+
+
   constructor(private sorteggioService: SorteggioService, 
               private storicoSorteggioService: StoricoSorteggioService, 
               private router: Router, 
               private activatedRoute: ActivatedRoute, 
-            ) { }
+              private commandService: CommandService
+            ) { 
+
+            this.subscription = this.commandService.commands.subscribe(c => this.handleCommand(c));
+  }
 
   checkPassword (pwd: string): void {
 
@@ -221,6 +231,14 @@ export class IndexPageComponent implements OnInit {
 
   }
 
+  handleCommand(command: Command) {
+    switch (command.name) {
+      case 'IndexComponent.ImportSorteggio': 
+        this.sorteggioDone = !(this.sorteggioDone); 
+        break;
+    }
+  }
+
   ngOnInit() {
 
     this.activatedRoute.data.subscribe(({ sorteggioCheck }) => {
@@ -231,5 +249,12 @@ export class IndexPageComponent implements OnInit {
   });
 
   }
+
+  ngOnDestroy() {
+
+    this.subscription.unsubscribe();
+
+  }
+
 
 }

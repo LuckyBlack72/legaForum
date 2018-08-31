@@ -1,0 +1,5 @@
+{
+  "hotkeys": {
+    "ctrl+shift+k": [ "IndexComponent.ImportSorteggio" ]
+  }
+}
