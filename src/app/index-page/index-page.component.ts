@@ -35,17 +35,18 @@ export class IndexPageComponent implements OnInit, OnDestroy {
   listaStagioniSwal: {};
   listaSerieSwal: {};
 
-  subscription: Subscription;
+  subscriptionHotKey: Subscription;
 
 
-  constructor(private sorteggioService: SorteggioService, 
+  constructor(
+              private sorteggioService: SorteggioService, 
               private storicoSorteggioService: StoricoSorteggioService, 
               private router: Router, 
               private activatedRoute: ActivatedRoute, 
               private commandService: CommandService
             ) { 
 
-            this.subscription = this.commandService.commands.subscribe(c => this.handleCommand(c));
+            this.subscriptionHotKey = this.commandService.commands.subscribe(c => this.handleCommand(c));
   }
 
   checkPassword (pwd: string): void {
@@ -233,7 +234,7 @@ export class IndexPageComponent implements OnInit, OnDestroy {
 
   handleCommand(command: Command) {
     switch (command.name) {
-      case 'IndexComponent.ImportSorteggio': 
+      case 'IndexComponent.SbloccaSorteggio': 
         this.sorteggioDone = !(this.sorteggioDone); 
         break;
     }
@@ -252,7 +253,7 @@ export class IndexPageComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
 
-    this.subscription.unsubscribe();
+    this.subscriptionHotKey.unsubscribe();
 
   }
 

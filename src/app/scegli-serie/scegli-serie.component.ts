@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
 import * as XLSX from 'xlsx';
@@ -9,19 +9,33 @@ import { DatiSquadra } from '../models/models';
 import { SorteggioService } from '../sorteggio.service';
 import { RankingPresentResolver } from './rankingPresent-resolver';
 
+import { Command, CommandService } from '../command.service';
+import { Subscription } from 'rxjs/Subscription';
+
 @Component({
   selector: 'app-scegli-serie',
   templateUrl: './scegli-serie.component.html',
   styleUrls: ['./scegli-serie.component.css'],
   providers: [SorteggioService, RankingPresentResolver]
 })
-export class ScegliSerieComponent implements OnInit {
+export class ScegliSerieComponent implements OnInit, OnDestroy {
 
   stagione: string;
   rankingPresent: boolean;
   rankingPresentSerie: boolean;
 
-  constructor( private utils: Utils, private sorteggioService: SorteggioService, private activatedRoute: ActivatedRoute) { }
+  subscriptionHotKey: Subscription;
+
+  constructor( 
+                private utils: Utils, 
+                private sorteggioService: SorteggioService, 
+                private activatedRoute: ActivatedRoute,
+                private commandService: CommandService
+              ) { 
+
+    this.subscriptionHotKey = this.commandService.commands.subscribe(c => this.handleCommand(c));
+
+  }
 
   async importRankingSwalPopUp () { //async come le promise
 
@@ -133,12 +147,31 @@ export class ScegliSerieComponent implements OnInit {
 
   }
 
+  handleCommand(command: Command) {
+    
+    switch (command.name) {
+      case 'ScegliSerieComponent.SbloccaRanking': 
+        this.rankingPresent = !(this.rankingPresent); 
+      break;
+      case 'ScegliSerieComponent.SbloccaSorteggio': 
+        this.rankingPresentSerie = !(this.rankingPresentSerie); 
+      break;
+    }
+  
+  }
+
   ngOnInit() {
 
     this.activatedRoute.data.subscribe(({ rankingCheck }) => {
       this.setRankingFlag(rankingCheck);
       this.stagione = this.utils.getStagione();
     });
+
+  }
+
+  ngOnDestroy() {
+
+    this.subscriptionHotKey.unsubscribe();
 
   }
 

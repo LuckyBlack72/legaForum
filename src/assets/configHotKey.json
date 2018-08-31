@@ -1,5 +1,6 @@
 {
   "hotkeys": {
-    "ctrl+shift+k": [ "IndexComponent.ImportSorteggio" ]
+    "ctrl+left": [ "IndexComponent.SbloccaSorteggio", "ScegliSerieComponent.SbloccaSorteggio" ],
+    "ctrl+right": [ "ScegliSerieComponent.SbloccaRanking" ]
   }
 }
