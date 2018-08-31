@@ -127,4 +127,12 @@ export class SorteggioService {
 
   }
 
+  checkRanking (stagione: string): Observable<boolean> {
+
+    const postData = {stagione : stagione};
+
+    return this.http.post<boolean>(this.utils.BASE_URL_BACKEND + '/checkRanking', postData);
+
+  }
+
 }

@@ -69,7 +69,6 @@ export class IndexPageComponent implements OnInit {
       }
     }
 
-
   }
 
   getListaStagioni (): void {

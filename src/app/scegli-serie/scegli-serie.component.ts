@@ -1,22 +1,27 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
 import * as XLSX from 'xlsx';
 
+import { environment } from '../../environments/environment';
 import { Utils } from '../models/utils';
 import { DatiSquadra } from '../models/models';
 import { SorteggioService } from '../sorteggio.service';
+import { RankingPresentResolver } from './rankingPresent-resolver';
 
 @Component({
   selector: 'app-scegli-serie',
   templateUrl: './scegli-serie.component.html',
   styleUrls: ['./scegli-serie.component.css'],
-  providers: [SorteggioService]
+  providers: [SorteggioService, RankingPresentResolver]
 })
 export class ScegliSerieComponent implements OnInit {
 
   stagione: string;
+  rankingPresent: boolean;
+  rankingPresentSerie: boolean;
 
-  constructor( private utils: Utils, private sorteggioService: SorteggioService) { }
+  constructor( private utils: Utils, private sorteggioService: SorteggioService, private activatedRoute: ActivatedRoute) { }
 
   async importRankingSwalPopUp () { //async come le promise
 
@@ -111,10 +116,29 @@ export class ScegliSerieComponent implements OnInit {
 
   }
 
+  setRankingFlag (rankingPresent: boolean): void {
+
+      if(environment.production){ //produzione
+        if(rankingPresent){ //ranking presente
+          this.rankingPresent = true; //tasto import disabilitato 
+          this.rankingPresentSerie = false; //tasti serie abilitati
+        }else{
+          this.rankingPresent = false //tasto import abilitato
+          this.rankingPresentSerie = true; //tasti serie disabilitati
+        }
+      } else { // sviluppo //sempre abilitati
+        this.rankingPresent = false; 
+        this.rankingPresentSerie = false;
+      }
+
+  }
 
   ngOnInit() {
 
-    this.stagione = this.utils.getStagione();
+    this.activatedRoute.data.subscribe(({ rankingCheck }) => {
+      this.setRankingFlag(rankingCheck);
+      this.stagione = this.utils.getStagione();
+    });
 
   }
 

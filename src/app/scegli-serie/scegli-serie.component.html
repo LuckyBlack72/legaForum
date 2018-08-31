@@ -22,8 +22,12 @@
       <div class="row m-2 h-25">
         <div class="col-md-4"></div>
         <div class="col-md-4 py-2">
-          <a routerLink='/serie-a' class="btn btn-success w-100 text-white text-center h-75 btn-lg btn-block active">
-            <h1> Serie A </h1>
+          <a [routerLink]="rankingPresentSerie ? null : '/serie-a'" 
+             [ngClass]="{ 'btn btn-success w-100 text-white text-center h-75 btn-lg btn-block disabled': rankingPresentSerie,
+                         'btn btn-success w-100 text-white text-center h-75 btn-lg btn-block active': !rankingPresentSerie
+                        }"
+            >
+              <h1> Serie A </h1>
           </a>
         </div>
         <div class="col-md-4"></div>
@@ -31,7 +35,11 @@
       <div class="row m-2 h-25">
         <div class="col-md-4"></div>
         <div class="col-md-4 py-2">
-          <a routerLink='/serie-b' class="btn btn-warning w-100 h-75 text-center btn-lg btn-block active">
+          <a [routerLink]="rankingPresentSerie ? null : '/serie-b'" 
+             [ngClass]="{ 'btn btn-warning w-100 text-white text-center h-75 btn-lg btn-block disabled': rankingPresentSerie,
+                          'btn btn-warning w-100 text-white text-center h-75 btn-lg btn-block active': !rankingPresentSerie
+                        }"
+          >
             <h1> Serie B </h1>
           </a>
         </div>
@@ -40,7 +48,11 @@
       <div class="row m-2 h-25">
         <div class="col-md-4"></div>
         <div class="col-md-4 py-2">
-          <a routerLink='/serie-c' class="btn btn-danger w-100 h-75 btn-lg btn-block active">
+          <a [routerLink]="rankingPresentSerie ? null : '/serie-c'" 
+             [ngClass]="{ 'btn btn-danger w-100 text-white text-center h-75 btn-lg btn-block disabled': rankingPresentSerie,
+                          'btn btn-danger w-100 text-white text-center h-75 btn-lg btn-block active': !rankingPresentSerie
+                        }"
+          >
             <h1> Serie C </h1>
           </a>
         </div>
@@ -50,7 +62,7 @@
       <div class="row m-2 h-25">
         <div class="col-md-4"></div>
         <div class="col-md-4 py-2">
-          <button type="button" class="btn btn-primary w-100 h-100 btn-lg btn-block active" (click)="importRankingSwalPopUp()">
+          <button type="button" [disabled]="rankingPresent" class="btn btn-primary w-100 h-100 btn-lg btn-block active" (click)="importRankingSwalPopUp()">
             <h2>Importa Ranking</h2>
           </button>  
         </div>
