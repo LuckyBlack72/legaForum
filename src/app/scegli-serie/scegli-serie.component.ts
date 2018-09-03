@@ -38,9 +38,9 @@ export class ScegliSerieComponent implements OnInit, OnDestroy {
 
   }
 
-  async importRankingSwalPopUp () { //async come le promise
+  async importRankingSorteggioSwalPopUp (tipoImport: string) { //async come le promise
 
-    let ranking: DatiSquadra[] = [];
+    let rankingSorteggio: DatiSquadra[] = [];
     let squadra: DatiSquadra = {
                                   id: 0,
                                   squadra: '',
@@ -54,7 +54,7 @@ export class ScegliSerieComponent implements OnInit, OnDestroy {
                                 }; 
     
     const {value: file} = await Swal({ //await impedisce al codice sottostante di essere sereguito fino al fullfillment della promise
-      title: 'Importa il Ranking Stagionale',
+      title: tipoImport === 'R' ? 'Importa il Ranking Stagionale' : 'Importa il Sorteggio Stagionale' ,
       input: 'file',
       inputAttributes: {
         accept: 'application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
@@ -91,8 +91,17 @@ export class ScegliSerieComponent implements OnInit, OnDestroy {
             if (key === 'Ranking'){
               squadra.ranking = value;
             }
+            
+            // per il sorteggio
+            if (key === 'Girone'){
+              squadra.girone = value;
+            }
+            if (key === 'ODS'){
+              squadra.ods = value;
+            }
+
           }
-          ranking.push(squadra);
+          rankingSorteggio.push(squadra);
           squadra = {
             id: 0,
             squadra: '',
@@ -105,13 +114,13 @@ export class ScegliSerieComponent implements OnInit, OnDestroy {
             ods: ''
           };           
         }
-        this.sorteggioService.importRanking(ranking, this.stagione.substr(0,4)).subscribe(
+        this.sorteggioService.importRankingSorteggio(tipoImport, rankingSorteggio, this.stagione.substr(0,4)).subscribe(
           data =>  {
                     Swal.hideLoading();
                     Swal({
                             allowOutsideClick: false,
                             allowEscapeKey: false,
-                            title: 'Ranking Importato con successo',
+                            title: tipoImport === 'R' ? 'Ranking Importato con successo' : 'Sorteggio Importato con successo',
                             type: 'success'
                         })
                     },  // error path
@@ -120,7 +129,7 @@ export class ScegliSerieComponent implements OnInit, OnDestroy {
                     Swal({
                             allowOutsideClick: false,
                             allowEscapeKey: false,
-                            title: 'Errore Import Ranking',
+                            title: tipoImport === 'R' ? 'Errore Import Ranking' : 'Errore Import Sorteggio',
                             type: 'error'
                         })  // error path
                     }
@@ -157,6 +166,10 @@ export class ScegliSerieComponent implements OnInit, OnDestroy {
       case 'ScegliSerieComponent.SbloccaSorteggio': 
         this.rankingPresentSerie = !(this.rankingPresentSerie); 
       break;
+      case 'ScegliSerieComponent.ImportaSorteggio': 
+        this.importRankingSorteggioSwalPopUp('S');
+      break;
+
     }
   
   }
