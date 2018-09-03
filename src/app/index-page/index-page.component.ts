@@ -11,12 +11,14 @@ import { Stagione } from '../models/models';
 
 import { Command, CommandService } from '../command.service';
 import { Subscription } from 'rxjs/Subscription';
+
 @Component({
   selector: 'app-index-page',
   templateUrl: './index-page.component.html',
   styleUrls: ['./index-page.component.css'],
   providers: [SorteggioService, StoricoSorteggioService, SorteggioDoneResolver]
 })
+
 export class IndexPageComponent implements OnInit, OnDestroy {
 
   @ViewChild('btnClose') btnClose: ElementRef;

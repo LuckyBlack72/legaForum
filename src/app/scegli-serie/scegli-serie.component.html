@@ -19,43 +19,33 @@
   </div>
   <div class="py-2">
     <div class="container-fluid">
+
       <div class="row m-2 h-25">
         <div class="col-md-4"></div>
         <div class="col-md-4 py-2">
-          <a [routerLink]="rankingPresentSerie ? null : '/serie-a'" 
-             [ngClass]="{ 'btn btn-success w-100 text-white text-center h-75 btn-lg btn-block disabled': rankingPresentSerie,
-                         'btn btn-success w-100 text-white text-center h-75 btn-lg btn-block active': !rankingPresentSerie
-                        }"
-              role="button"                        
-            >
-              <h1> Serie A </h1>
-          </a>
+          <button type="button" [disabled]="rankingPresentSerie" class="btn btn-success w-100 h-100 btn-lg btn-block active" (click)="navigatePage('a')">
+              <h2>Serie A</h2>
+          </button>  
         </div>
         <div class="col-md-4"></div>
       </div>
+
       <div class="row m-2 h-25">
         <div class="col-md-4"></div>
         <div class="col-md-4 py-2">
-          <a [routerLink]="rankingPresentSerie ? null : '/serie-b'" 
-             [ngClass]="{ 'btn btn-warning w-100 text-white text-center h-75 btn-lg btn-block disabled': rankingPresentSerie,
-                          'btn btn-warning w-100 text-white text-center h-75 btn-lg btn-block active': !rankingPresentSerie
-                        }"
-          >
-            <h1> Serie B </h1>
-          </a>
+          <button type="button" [disabled]="rankingPresentSerie" class="btn btn-warning w-100 h-100 btn-lg btn-block active" (click)="navigatePage('b')">
+              <h2>Serie B</h2>
+          </button>  
         </div>
         <div class="col-md-4"></div>
       </div>
+
       <div class="row m-2 h-25">
         <div class="col-md-4"></div>
         <div class="col-md-4 py-2">
-          <a [routerLink]="rankingPresentSerie ? null : '/serie-c'" 
-             [ngClass]="{ 'btn btn-danger w-100 text-white text-center h-75 btn-lg btn-block disabled': rankingPresentSerie,
-                          'btn btn-danger w-100 text-white text-center h-75 btn-lg btn-block active': !rankingPresentSerie
-                        }"
-          >
-            <h1> Serie C </h1>
-          </a>
+          <button type="button" [disabled]="rankingPresentSerie" class="btn btn-danger w-100 h-100 btn-lg btn-block active" (click)="navigatePage('c')">
+              <h2>Serie C</h2>
+          </button>  
         </div>
         <div class="col-md-4"></div>
       </div>

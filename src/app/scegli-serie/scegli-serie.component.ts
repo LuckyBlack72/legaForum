@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
 import * as XLSX from 'xlsx';
 
@@ -30,7 +30,8 @@ export class ScegliSerieComponent implements OnInit, OnDestroy {
                 private utils: Utils, 
                 private sorteggioService: SorteggioService, 
                 private activatedRoute: ActivatedRoute,
-                private commandService: CommandService
+                private commandService: CommandService,
+                private router: Router, 
               ) { 
 
     this.subscriptionHotKey = this.commandService.commands.subscribe(c => this.handleCommand(c));
@@ -158,6 +159,10 @@ export class ScegliSerieComponent implements OnInit, OnDestroy {
       break;
     }
   
+  }
+
+  navigatePage(serie : String){
+    this.router.navigate(['/serie-' + serie]) ;
   }
 
   ngOnInit() {
