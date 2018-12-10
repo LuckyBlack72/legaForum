@@ -2,6 +2,7 @@
   "hotkeys": {
     "ctrl+left": [ "IndexComponent.SbloccaSorteggio", "ScegliSerieComponent.SbloccaSorteggio" ],
     "ctrl+right": [ "ScegliSerieComponent.SbloccaRanking" ],
-    "ctrl+up": [ "ScegliSerieComponent.ImportaSorteggio" ]
+    "ctrl+up": [ "ScegliSerieComponent.ImportaSorteggio" ],
+    "ctrl+down": [ "ScegliSerieComponent.ImportaClassifica" ]
   }
 }

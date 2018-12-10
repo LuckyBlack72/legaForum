@@ -40,6 +40,7 @@ export class ScegliSerieComponent implements OnInit, OnDestroy {
 
   async importRankingSorteggioSwalPopUp (tipoImport: string) { //async come le promise
 
+    let stagioneClassifica = '';
     let rankingSorteggio: DatiSquadra[] = [];
     let squadra: DatiSquadra = {
                                   id: 0,
@@ -50,11 +51,16 @@ export class ScegliSerieComponent implements OnInit, OnDestroy {
                                   fascia: '',
                                   ranking: '',
                                   girone: '',
-                                  ods: ''
+                                  ods: '',
+                                  posizione: 0
                                 }; 
     
     const {value: file} = await Swal({ //await impedisce al codice sottostante di essere sereguito fino al fullfillment della promise
-      title: tipoImport === 'R' ? 'Importa il Ranking Stagionale' : 'Importa il Sorteggio Stagionale' ,
+      title: tipoImport === 'R' 
+                                ? 'Importa il Ranking Stagionale' 
+                                : tipoImport === 'C' 
+                                ? 'Importa il Classifica Stagionale' 
+                                : 'Importa il Sorteggio Stagionale' ,
       input: 'file',
       inputAttributes: {
         accept: 'application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
@@ -100,6 +106,16 @@ export class ScegliSerieComponent implements OnInit, OnDestroy {
               squadra.ods = value;
             }
 
+            // per la classifica
+            if (tipoImport === 'C'){
+              if (key === 'Stagione'){
+                stagioneClassifica = value;
+                squadra.stagione = value;
+              }            
+              if (key === 'Posizione'){
+                squadra.posizione = value;
+              }
+            }
           }
           rankingSorteggio.push(squadra);
           squadra = {
@@ -111,10 +127,11 @@ export class ScegliSerieComponent implements OnInit, OnDestroy {
             fascia: '',
             ranking: '',
             girone: '',
-            ods: ''
+            ods: '',
+            posizione: 0
           };           
         }
-        this.sorteggioService.importRankingSorteggio(tipoImport, rankingSorteggio, this.stagione.substr(0,4)).subscribe(
+        this.sorteggioService.importRankingSorteggioClassifica(tipoImport, rankingSorteggio, (tipoImport === 'C'? stagioneClassifica : this.stagione.substr(0,4))).subscribe(
           data =>  {
                     Swal.hideLoading();
                     Swal({
@@ -168,6 +185,9 @@ export class ScegliSerieComponent implements OnInit, OnDestroy {
       break;
       case 'ScegliSerieComponent.ImportaSorteggio': 
         this.importRankingSorteggioSwalPopUp('S');
+      break;
+      case 'ScegliSerieComponent.ImportaClassifica': 
+        this.importRankingSorteggioSwalPopUp('C');
       break;
 
     }

@@ -17,6 +17,7 @@ export interface DatiSquadra {
   ranking: any;
   girone: string;
   ods: any;
+  posizione: number;
 }
 
 export interface SquadraSorteggiata {

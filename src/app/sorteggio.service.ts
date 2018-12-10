@@ -119,11 +119,11 @@ export class SorteggioService {
 
   }
 
-  importRankingSorteggio (tipoImport: string, rankingSorteggio: DatiSquadra[], stagione: string): Observable<boolean>{
+  importRankingSorteggioClassifica (tipoImport: string, rankingSorteggio: DatiSquadra[], stagione: string): Observable<boolean>{
 
     const postData = {tipoImport: tipoImport, rankingSorteggio : rankingSorteggio, stagione: stagione};
 
-    return this.http.post<boolean>(this.utils.BASE_URL_BACKEND + '/importRankingSorteggio', postData);
+    return this.http.post<boolean>(this.utils.BASE_URL_BACKEND + '/importRankingSorteggioClassifica', postData);
 
   }
 
