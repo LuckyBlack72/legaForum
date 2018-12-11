@@ -59,7 +59,7 @@ export class ScegliSerieComponent implements OnInit, OnDestroy {
       title: tipoImport === 'R' 
                                 ? 'Importa il Ranking Stagionale' 
                                 : tipoImport === 'C' 
-                                ? 'Importa il Classifica Stagionale' 
+                                ? 'Importa la Classifica Stagionale' 
                                 : 'Importa il Sorteggio Stagionale' ,
       input: 'file',
       inputAttributes: {
@@ -137,7 +137,11 @@ export class ScegliSerieComponent implements OnInit, OnDestroy {
                     Swal({
                             allowOutsideClick: false,
                             allowEscapeKey: false,
-                            title: tipoImport === 'R' ? 'Ranking Importato con successo' : 'Sorteggio Importato con successo',
+                            title: tipoImport === 'R' 
+                                   ? 'Ranking Importato con successo' 
+                                   : tipoImport === 'C' 
+                                   ?'Classifica Importata con successo'
+                                   :'Sorteggio Importato con successo',
                             type: 'success'
                         })
                     },  // error path
@@ -146,7 +150,11 @@ export class ScegliSerieComponent implements OnInit, OnDestroy {
                     Swal({
                             allowOutsideClick: false,
                             allowEscapeKey: false,
-                            title: tipoImport === 'R' ? 'Errore Import Ranking' : 'Errore Import Sorteggio',
+                            title: tipoImport === 'R' 
+                                   ? 'Errore Import Ranking' 
+                                   : tipoImport === 'C'
+                                   ? 'Errore Import Classifica'
+                                   : 'Errore Import Sorteggio',
                             type: 'error'
                         })  // error path
                     }
