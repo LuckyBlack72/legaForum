@@ -134,6 +134,9 @@ export class ScegliSerieComponent implements OnInit, OnDestroy {
         this.sorteggioService.importRankingSorteggioClassifica(tipoImport, rankingSorteggio, (tipoImport === 'C'? stagioneClassifica : this.stagione.substr(0,4))).subscribe(
           data =>  {
                     Swal.hideLoading();
+                    if (tipoImport === 'R'){
+                      this.setRankingFlag(true);
+                    }
                     Swal({
                             allowOutsideClick: false,
                             allowEscapeKey: false,
