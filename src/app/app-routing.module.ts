@@ -14,7 +14,7 @@ import {RankingPresentResolver} from './scegli-serie/rankingPresent-resolver';
 const routes: Routes = [
   { path: '', redirectTo: '/index-page', pathMatch: 'full' },
   { path: 'index-page', component: IndexPageComponent, resolve: {sorteggioCheck: SorteggioDoneResolver} },
-  { path: 'scegli-serie', component: ScegliSerieComponent, resolve: {sorteggioCheck: RankingPresentResolver} },
+  { path: 'scegli-serie', component: ScegliSerieComponent, resolve: {rankingCheck: RankingPresentResolver} },
   { path: 'serie-a', component: SerieAComponent },
   { path: 'serie-b', component: SerieBComponent },
   { path: 'serie-c', component: SerieCComponent },
