@@ -221,7 +221,11 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-xs-5">
-          <a class="btn btn-info m-2 btn-lg" href='/scegli-serie' role="Button"> Sorteggio Nuova Serie </a>
+          <!-- LF 24/06/2021 -->
+          <!-- <a class="btn btn-info m-2 btn-lg" href='/scegli-serie' role="Button"> Sorteggio Nuova Serie </a> -->
+          <button type="button" class="btn btn-info m-2 btn-lg" (click)="gotoMenu()">
+            Sorteggio Nuova Serie
+          </button>
           <button [disabled]="flgSaved" type="button" class="btn btn-info btn-lg" (click)="initSorteggioGirone(template)">
             Sorteggio Gironi Serie {{parametriPagina.serie}}
           </button>

@@ -1,5 +1,6 @@
 //import { ViewChild, Component, Input, OnInit, TemplateRef, ElementRef } from '@angular/core';
 import { Component, Input, OnInit, TemplateRef } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import * as _ from 'lodash';
@@ -66,7 +67,13 @@ export class SorteggioComponent implements OnInit {
 
   modalRef: BsModalRef;
 
-  constructor(private sorteggioService: SorteggioService, private utils: Utils, private modalService: BsModalService) { }
+  constructor(
+                private sorteggioService: SorteggioService,
+                private utils: Utils,
+                private modalService: BsModalService,
+                private router: Router, 
+                private activatedRoute: ActivatedRoute
+              ) { }
 
   randomNumber (minimum: number, maximum: number): number {
     return Math.round(Math.random() * (maximum - minimum) + minimum);
@@ -441,6 +448,14 @@ export class SorteggioComponent implements OnInit {
       $('#msgContainer').prepend('<h4 class="modal-title text-center" id="msgText">' + messaggio + '</h4>');
       $('#messageModal').modal('show'); // mostra la modal dei messaggi
     }*/
+
+  //LF 24/06/2021
+  gotoMenu () {
+
+    this.router.navigate(['/scegli-serie']) ;
+
+  }
+  
 
   ngOnInit() {
 
