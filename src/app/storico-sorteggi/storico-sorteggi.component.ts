@@ -1,7 +1,7 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {
   DatiSquadra, Squadra, SquadraGironeStorico, SquadraGironeStoricoFormatted, Stagione, StoricoSquadra,
-  StoricoSquadraFormatted
+  StoricoSquadraFormatted, Allenatore
 } from '../models/models';
 import {StoricoSorteggioService} from '../storico-sorteggio.service';
 
@@ -19,6 +19,7 @@ export class StoricoSorteggiComponent implements OnInit {
 
   listaStagioni: Stagione[];
   listaSquadre: Squadra[];
+  listaAllenatori: Allenatore[];
 
   gironeA: SquadraGironeStoricoFormatted[] = [];
   gironeB: SquadraGironeStoricoFormatted[] = [];
@@ -212,6 +213,15 @@ export class StoricoSorteggiComponent implements OnInit {
 
   }
 
+  getListaAllenatori (): void {
+
+    this.storicoSorteggioService.getListaAllenatori().subscribe(
+      data => this.listaAllenatori = data , // success path
+      error => this.listaAllenatori = [] // error path [] vuota la lista delle Squadre
+    );
+
+  }
+
   getSorteggioStagione(stagione: string): void {
 
     if ( stagione !== 'XXX' ) {
@@ -274,12 +284,46 @@ export class StoricoSorteggiComponent implements OnInit {
 
   }
 
+
+  getSorteggioAllenatore(allenatore: string): void {
+
+    if ( allenatore !== 'XXX' ) {
+
+      this.stCmb.nativeElement.selectedIndex = 0;
+
+      this.storicoSorteggioService.getSorteggioAllenatore(allenatore).subscribe(
+        data => {
+
+          const sorteggioFullSquadra = data;
+          this.sorteggiSquadra = this.formatSorteggiSquadra(sorteggioFullSquadra);
+          this.showSorteggiSquadra = true;
+          this.showSorteggi = false;
+
+         } , // success path
+        error => {
+
+          this.showSorteggi = false;
+          this.showSorteggiSquadra = false;
+          alert('Errore nel caricamento dei dati');
+
+        } // error path
+      );
+
+    } else {
+      this.showSorteggi = false;
+      this.showSorteggiSquadra = false;
+    }
+
+  }
+
+
   ngOnInit() {
 
     this.showSorteggi = false;
     this.showSorteggiSquadra = false;
     this.getListaStagioni();
     this.getListaSquadre();
+    this.getListaAllenatori();
 
   }
 

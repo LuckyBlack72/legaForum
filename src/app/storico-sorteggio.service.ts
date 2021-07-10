@@ -5,7 +5,7 @@ import 'rxjs/add/observable/of'; // serve per usare la funzione of per tornare i
 import {tap} from 'rxjs/operators';
 
 import {Utils} from './models/utils';
-import {DatiSquadra, Squadra, Stagione} from './models/models';
+import {DatiSquadra, Squadra, Stagione, Allenatore} from './models/models';
 
 @Injectable()
 export class StoricoSorteggioService {
@@ -36,11 +36,32 @@ export class StoricoSorteggioService {
 
   }
 
+  getListaAllenatori (): Observable<Allenatore[]> {
+
+    // chiamata ajax vera da ripristinare quando c'è il backEnd
+     const postParameter = '';
+     return this.http.post<Allenatore[]>(this.utils.BASE_URL_BACKEND + '/getAllenatori', postParameter)
+                                      .pipe(tap(allenatori => console.log(allenatori)));
+    // ritorno dati fissi
+    // const squadre: string[] = ['A.S. Poker', 'Swansea', 'Jeeg Robot', 'A.S. Paulina Maria', 'Mandarino Bretone'];
+    // return Observable.of(squadre);
+
+  }
+
   getSorteggioSquadra (squadra: string): Observable<DatiSquadra[]> {
 
     // chiamata ajax vera da ripristinare quando c'è il backEnd
     const postParameter = { squadra: squadra };
     return this.http.post<DatiSquadra[]>(this.utils.BASE_URL_BACKEND + '/getSorteggioSquadra', postParameter);
+
+
+  }
+
+  getSorteggioAllenatore (allenatore: string): Observable<DatiSquadra[]> {
+
+    // chiamata ajax vera da ripristinare quando c'è il backEnd
+    const postParameter = { allenatore: allenatore };
+    return this.http.post<DatiSquadra[]>(this.utils.BASE_URL_BACKEND + '/getSorteggioAllenatore', postParameter);
 
 
   }

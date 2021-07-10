@@ -87,6 +87,10 @@ export interface Squadra {
   squadra: string;
 }
 
+export interface Allenatore {
+  allenatore: string;
+}
+
 export interface ExcelRow {
   squadra: string;
   allenatore: string;
